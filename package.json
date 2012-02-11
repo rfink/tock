@@ -24,7 +24,8 @@
 		"mongoose": "2.4.10",
 		"restler": "0.2.5",
 		"formidable": "1.0.8",
-		"async": "0.1.15"
+		"async": "0.1.15",
+		"swig": "0.9.4"
 	},
 	"engine": "node >= 0.6.0"
 }
