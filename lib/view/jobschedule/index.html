@@ -1,4 +1,45 @@
 {% extends 'layout/default.html' %}
 {% block content %}
-
+<h2>Create Scheduled Job</h2>
+<form method="post" action="/jobschedule/post">
+	<div class="input-row">
+		<label for="input-command">System Command</label>
+		<input type="text" id="input-cmomand" name="JobSchedule[Command]" />
+	</div>
+	<div class="input-row">
+		<label for="input-params">Parameters</label>
+		<input type="array" id="input-params" name="JobSchedule[Params][]" />
+	</div>
+	<div class="input-row">
+		<label for="input-minutes">Minute(s)</label>
+		<input type="slider" id="input-minutes" name="JobSchedule[Minutes]" />
+	</div>
+	<div class="input-row">
+		<label for="input-hours">Hour(s)</label>
+		<input type="slider" id="input-hours" name="JobSchedule[Hours]" />
+	</div>
+	<div class="input-row">
+		<label for="input-daysofmonth">Day(s) of Month</label>
+		<input type="slider" id="input-daysofmonth" name="JobSchedule[DaysOfMonth]" /> 
+	</div>
+	<div class="input-row">
+		<label for="input-months">Month(s)</label>
+		<input type="slider" id="input-months" name="JobSchedule[Months]" /> 
+	</div>
+	<div class="input-row">
+		<label for="input-daysofweek">Day(s) of Week</label>
+		<input type="slider" id="input-daysofweek" name="JobSchedule[DaysOfWeek]" /> 
+	</div>
+	<div class="input-row">
+		<label for="input-retryonerror">Retry Job on Error</label>
+		<input type="checkbox" value="1" id="input-retryonerror" name="JobSchedule[RetryOnErrors]" /> 
+	</div>
+	<div class="input-row">
+		<label for="input-logoutputonsuccess">Log Output on Success</label>
+		<input type="checkbox" id="input-logoutputonsuccess" name="JobSchedule[LogOutputOnSuccess]" /> 
+	</div>
+	<div class="button-row">
+		<input type="submit" value="Create Scheduled Job" />
+	</div>
+</form>
 {% endblock %}
