@@ -1,11 +1,21 @@
-html,body { margin: 0; padding: 0; font-family: arial; height: 100%; background-color: #dddde4; }
+html,body { margin: 0; padding: 0; font-family: arial; height: 100%; background-color: #dddde4;
+			background-image: url(/assets/images/noise.png); }
 header { height: 42px; background-color: #292929; font-size: 150%;
-		 color: #fff; line-height: 42px; padding: 8px 0 8px 5px; }
+		 color: #fff; line-height: 42px; padding: 8px 0 8px 5px; font-weight: bold; }
 label { padding: 6px; }
 input { border: 1px solid #999; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
 		padding: 6px; }
 
-#sidebar { width: 220px; position: fixed; background-color: #454545; height: 100%; }
+#sidebar { width: 220px; position: fixed; background-color: #454545; height: 100%; top: 0; left: 0; }
+#sidebar nav {  }
+#sidebar nav ul { list-style: none; text-indent: 0; padding: 0; }
+#sidebar nav li { display: inline-block; line-height: 36px; width: 100%;
+				  background-image: url(/assets/images/nav-bg.png); }
+#sidebar nav li a { color: #fff; line-height: 40px; text-decoration: none; padding-left: 12px; }
+#sidebar nav li ul { left: 220px; top: 0; }
+#sidebar nav li:hover { background-color: #373737; }
+#sidebar nav li li { background-color: #272727; }
+#sidebar nav li ul li:hover { background-color: #171717; }
 #main { margin-left: 220px; }
 #inner-header { background-color: #292929; height: 42px; padding: 8px 0; }
 #content { padding: 0 35px 35px 35px; }
@@ -30,3 +40,5 @@ div.button-row { text-align: center; padding: 15px; }
 .block-selector div span.ui-active { background-color: #ccc; color: #333; }
 .block-selector div span.ui-active:hover {}
 .tock-schedule-container { margin: 25px 0; }
+#tock-param-add:hover { cursor: pointer; }
+.tock-param-remove:hover { cursor: pointer; }

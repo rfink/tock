@@ -6,8 +6,10 @@
 		{% block head %}
 		<link rel="stylesheet" href="/assets/scripts/jquery-ui-1.8.17/css/dot-luv/jquery-ui-1.8.17.custom.css" type="text/css" />
 		<link rel="stylesheet" href="/assets/styles/all.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/assets/scripts/superfish/superfish.css" media="screen" type="text/css" />
 		<script type="text/javascript" src="/assets/scripts/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="/assets/scripts/jquery-ui-1.8.17/js/jquery-ui-1.8.17.custom.min.js"></script>
+		<script type="text/javascript" src="/assets/scripts/superfish/superfish.js"></script>
 		<script type="text/javascript" src="/assets/scripts/main.js"></script>
 		{% endblock %}
 		{% block pageScripting %}{% endblock %}
@@ -16,7 +18,7 @@
 		<section id="sidebar">
 			<header>TOCK</header>
 			<nav>
-				<ul>
+				<ul class="sf-menu">
 					<li>
 						<a href="/dashboard"><span>Dashboard</span></a>
 					</li>
