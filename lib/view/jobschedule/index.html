@@ -1,142 +1,7 @@
 {% extends 'layout/default.html' %}
 
 {% block pageScripting %}
-<style type="text/css">
-	.tabs { min-height: 270px; }
-	.accordion { font-size: 80%; }
-	.accordion h3 { overflow: auto; }
-	.accordion h3 a { display: block; float: left; }
-	.accordion h3 div.tock-value { font-size: 135%; float: right; margin: 3px 65px 0 0; }
-	.font-extra-large { font-size: 270%; }
-	.block-selector { font-size: 120%; }
-	.block-selector div { overflow: auto; }
-	.block-selector div span { padding: 6px; background-color: #4a2727; border: 1px solid #927a7a;
-							   width: 18px; display: block; float: left; text-align: center; }
-	.block-selector div span:hover { background-color: #7a1c1c; cursor: pointer; }
-	.block-selector div span.ui-active { background-color: #ccc; }
-	.block-selector div span.ui-active:hover {  }
-</style>
-<script type="text/javascript">
-$(function() {
-
-	/**
-	 * Update the visible and non-visible value
-	 * @param  {object} ui
-	 * @param  {string} value
-	 * @return {void}
-	 */
-	var updateValue = function(ui, value) {
-		$(ui).parents('.tock-selection-div:first').find('input[type="hidden"]').val(value);
-		$(ui).parents('.tock-selection-div:first').prevAll('h3:first').find('div.tock-value').html(value);
-	};
-
-	/**
-	 * Get the value for the given ui pointer
-	 * @param  {object} ui
-	 * @return {string}
-	 */
-	var getValue = function(ui) {
-		return $(ui).parents('.tock-selection-div:first').find('input[type="hidden"]').val();
-	};
-
-	$('.tabs').tabs();
-	$('.accordion').accordion();
-	$('.tock-select-all').click(function() {
-		updateValue(this, '*');
-	});
-	$('.tock-select-each').click(function() {
-		//$(this).parents('.tock-selection')
-	});
-	$('.slider').each(function() {
-		var self = this;
-		$(this).slider({
-			min: 1,
-			step: 1,
-			max: $(this).data('max'),
-			slide: function(event, ui) {
-				updateValue(self, '*/' + ui.value);
-			}
-		});
-	});
-	$('.block-selector div span').live('click', function() {
-		$(this).toggleClass('ui-active');
-		var values = [];
-		$(this).parents('.block-selector:first').find('div span.ui-active').each(function() {
-			values.push($(this).html());
-		});
-		if (!values.length) {
-			updateValue(this, '*');
-		} else {
-			updateValue(this, values.join(','));
-		}
-	});
-	(function populateMinuteBlock() {
-		var breakPoint = 10;
-		var $minuteBlock = $('#minute-block');
-		var $divBlock = $('<div></div>');
-		for (var i = 0; i < 60; ++i) {
-			if (!(i % breakPoint)) {
-				$minuteBlock.append($divBlock);
-				$divBlock = $('<div></div>');
-			}
-			$divBlock.append($('<span class="">' + i + '</span>'));
-		}
-		$minuteBlock.append($divBlock);
-	})();
-	(function populateHourBlock() {
-		var breakPoint = 12;
-		var $hourBlock = $('#hour-block');
-		var $divBlock = $('<div></div>');
-		for (var i = 0; i < 24; ++i) {
-			if (!(i % breakPoint)) {
-				$hourBlock.append($divBlock);
-				$divBlock = $('<div></div>');
-			}
-			$divBlock.append($('<span class="">' + i + '</span>'));
-		}
-		$hourBlock.append($divBlock);
-	})();
-	(function populateDayOfMonthBlock() {
-		var breakPoint = 7;
-		var $dayOfMonthBlock = $('#dayofmonth-block');
-		var $divBlock = $('<div></div>');
-		for (var i = 1; i < 32; ++i) {
-			if (!((i - 1) % breakPoint)) {
-				$dayOfMonthBlock.append($divBlock);
-				$divBlock = $('<div></div>');
-			}
-			$divBlock.append($('<span class="">' + i + '</span>'));
-		}
-		$dayOfMonthBlock.append($divBlock);
-	})();
-	(function populateMonthBlock() {
-		var breakPoint = 13;
-		var $monthBlock = $('#month-block');
-		var $divBlock = $('<div></div>');
-		for (var i = 1; i < 13; ++i) {
-			if (!(i % breakPoint)) {
-				$monthBlock.append($divBlock);
-				$divBlock = $('<div></div>');
-			}
-			$divBlock.append($('<span class="">' + i + '</span>'));
-		}
-		$monthBlock.append($divBlock);
-	})();
-	(function populateDayOfWeekBlock() {
-		var breakPoint = 8;
-		var $dayOfWeekBlock = $('#dayofweek-block');
-		var $divBlock = $('<div></div>');
-		for (var i = 0; i < 7; ++i) {
-			if (!(i % breakPoint)) {
-				$dayOfWeekBlock.append($divBlock);
-				$divBlock = $('<div></div>');
-			}
-			$divBlock.append($('<span class="">' + i + '</span>'));
-		}
-		$dayOfWeekBlock.append($divBlock);
-	})();
-});
-</script>
+<script type="text/javascript" src="/assets/scripts/scheduler.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -156,10 +21,10 @@ $(function() {
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Minutes]" />
+			<input type="hidden" name="JobSchedule[Minutes]" class="tock-schedule-selector" />
 			<div id="tabs-minutes" class="tabs ui-tabs">
 				<ul>
-					<li><a href="#tabs-minutes-1" class="tock-select-all" data-boundfield="JobSchedule[Minutes]">every minute</a></li>
+					<li><a href="#tabs-minutes-1" class="tock-select-all">every minute</a></li>
 					<li><a href="#tabs-minutes-2">every (n) minutes</a></li>
 					<li><a href="#tabs-minutes-3" class="tock-select-each">each selected minute</a></li>
 				</ul>
@@ -179,10 +44,10 @@ $(function() {
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Hours]" />
+			<input type="hidden" name="JobSchedule[Hours]" class="tock-schedule-selector" />
 			<div id="tabs-hours" class="tabs ui-tabs">
 				<ul>
-					<li><a href="#tabs-hours-1" class="tock-select-all" data-boundfield="JobSchedule[Hours]">every hour</a></li>
+					<li><a href="#tabs-hours-1" class="tock-select-all">every hour</a></li>
 					<li><a href="#tabs-hours-2">every (n) hours</a></li>
 					<li><a href="#tabs-hours-3" class="tock-select-each">each selected hour</a></li>
 				</ul>
@@ -202,10 +67,10 @@ $(function() {
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[DaysOfMonth]" />
+			<input type="hidden" name="JobSchedule[DaysOfMonth]" class="tock-schedule-selector" />
 			<div id="tabs-daysofmonth" class="tabs ui-tabs">
 				<ul>
-					<li><a href="#tabs-daysofmonth-1" class="tock-select-all" data-boundfield="JobSchedule[DaysOfMonth]">every day</a></li>
+					<li><a href="#tabs-daysofmonth-1" class="tock-select-all">every day</a></li>
 					<li><a href="#tabs-daysofmonth-2">every (n) days</a></li>
 					<li><a href="#tabs-daysofmonth-3" class="tock-select-each">each selected day</a></li>
 				</ul>
@@ -225,10 +90,10 @@ $(function() {
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Months]" />
+			<input type="hidden" name="JobSchedule[Months]" class="tock-schedule-selector" />
 			<div id="tabs-months" class="tabs ui-tabs">
 				<ul>
-					<li><a href="#tabs-months-1" class="tock-select-all" data-boundfield="JobSchedule[Months]">every month</a></li>
+					<li><a href="#tabs-months-1" class="tock-select-all">every month</a></li>
 					<li><a href="#tabs-months-3" class="tock-select-each">each selected month</a></li>
 				</ul>
 				<div id="tabs-months-1">
@@ -244,10 +109,10 @@ $(function() {
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[DaysOfWeek]" />
+			<input type="hidden" name="JobSchedule[DaysOfWeek]" class="tock-schedule-selector" />
 			<div id="tabs-daysofweek" class="tabs ui-tabs">
 				<ul>
-					<li><a href="#tabs-daysofweek-1" class="tock-select-all data-boundfield="JobSchedule[DaysOfWeek]"">every day of week</a></li>
+					<li><a href="#tabs-daysofweek-1" class="tock-select-all">every day of week</a></li>
 					<li><a href="#tabs-daysofweek-3" class="tock-select-each">each selected day of week</a></li>
 				</ul>
 				<div id="tabs-daysofweek-1">

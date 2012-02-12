@@ -1,0 +1,13 @@
+.tabs { min-height: 270px; }
+.accordion { font-size: 80%; }
+.accordion h3 { overflow: auto; }
+.accordion h3 a { display: block; float: left; }
+.accordion h3 div.tock-value { font-size: 135%; float: right; margin: 3px 65px 0 0; }
+.font-extra-large { font-size: 270%; }
+.block-selector { font-size: 120%; }
+.block-selector div { overflow: auto; }
+.block-selector div span { padding: 6px; background-color: #4a2727; border: 1px solid #927a7a;
+						   min-width: 18px; display: block; float: left; text-align: center; }
+.block-selector div span:hover { background-color: #7a1c1c; cursor: pointer; }
+.block-selector div span.ui-active { background-color: #ccc; }
+.block-selector div span.ui-active:hover {}
