@@ -1,4 +1,102 @@
 {% extends 'layout/default.html' %}
+
+{% block pageScripting %}
+<style type="text/css">
+	.tabs { min-height: 270px; }
+	.accordion { font-size: 80%; }
+	.font-extra-large { font-size: 270%; }
+	.block-selector { font-size: 120%; }
+	.block-selector div { overflow: auto; }
+	.block-selector div span { padding: 6px; background-color: #4a2727; border: 1px solid #927a7a;
+							   width: 18px; display: block; float: left; text-align: center; }
+</style>
+<script type="text/javascript">
+$(function() {
+	$('.tabs').tabs();
+	$('.accordion').accordion();
+	$('.tock-select-all').click(function() {
+		var boundField = $(this).data('boundfield');
+		$('input[name="' + boundField + '"]').val('*');
+	});
+	$('.slider').each(function() {
+		$(this).slider({
+			min: 0,
+			step: 1,
+			max: $(this).data('max'),
+			slide: function(event, ui) {
+				
+			}
+		});
+	});
+	(function populateMinuteBlock() {
+		var breakPoint = 10;
+		var $minuteBlock = $('#minute-block');
+		var $divBlock = $('<div></div>');
+		for (var i = 0; i < 60; ++i) {
+			if (!(i % breakPoint)) {
+				$minuteBlock.append($divBlock);
+				$divBlock = $('<div></div>');
+			}
+			$divBlock.append($('<span class="">' + i + '</span>'));
+		}
+		$minuteBlock.append($divBlock);
+	})();
+	(function populateHourBlock() {
+		var breakPoint = 12;
+		var $hourBlock = $('#hour-block');
+		var $divBlock = $('<div></div>');
+		for (var i = 0; i < 24; ++i) {
+			if (!(i % breakPoint)) {
+				$hourBlock.append($divBlock);
+				$divBlock = $('<div></div>');
+			}
+			$divBlock.append($('<span class="">' + i + '</span>'));
+		}
+		$hourBlock.append($divBlock);
+	})();
+	(function populateDayOfMonthBlock() {
+		var breakPoint = 7;
+		var $dayOfMonthBlock = $('#dayofmonth-block');
+		var $divBlock = $('<div></div>');
+		for (var i = 1; i < 32; ++i) {
+			if (!((i - 1) % breakPoint)) {
+				$dayOfMonthBlock.append($divBlock);
+				$divBlock = $('<div></div>');
+			}
+			$divBlock.append($('<span class="">' + i + '</span>'));
+		}
+		$dayOfMonthBlock.append($divBlock);
+	})();
+	(function populateMonthBlock() {
+		var breakPoint = 13;
+		var $monthBlock = $('#month-block');
+		var $divBlock = $('<div></div>');
+		for (var i = 1; i < 13; ++i) {
+			if (!(i % breakPoint)) {
+				$monthBlock.append($divBlock);
+				$divBlock = $('<div></div>');
+			}
+			$divBlock.append($('<span class="">' + i + '</span>'));
+		}
+		$monthBlock.append($divBlock);
+	})();
+	(function populateDayOfWeekBlock() {
+		var breakPoint = 8;
+		var $dayOfWeekBlock = $('#dayofweek-block');
+		var $divBlock = $('<div></div>');
+		for (var i = 0; i < 7; ++i) {
+			if (!(i % breakPoint)) {
+				$dayOfWeekBlock.append($divBlock);
+				$divBlock = $('<div></div>');
+			}
+			$divBlock.append($('<span class="">' + i + '</span>'));
+		}
+		$dayOfWeekBlock.append($divBlock);
+	})();
+});
+</script>
+{% endblock %}
+
 {% block content %}
 <h2>Create Scheduled Job</h2>
 <form method="post" action="/jobschedule/post">
@@ -6,29 +104,113 @@
 		<label for="input-command">System Command</label>
 		<input type="text" id="input-cmomand" name="JobSchedule[Command]" />
 	</div>
-	<div class="input-row">
+	<div class="input-row">	
 		<label for="input-params">Parameters</label>
 		<input type="array" id="input-params" name="JobSchedule[Params][]" />
 	</div>
-	<div class="input-row">
-		<label for="input-minutes">Minute(s)</label>
-		<input type="slider" id="input-minutes" name="JobSchedule[Minutes]" />
-	</div>
-	<div class="input-row">
-		<label for="input-hours">Hour(s)</label>
-		<input type="slider" id="input-hours" name="JobSchedule[Hours]" />
-	</div>
-	<div class="input-row">
-		<label for="input-daysofmonth">Day(s) of Month</label>
-		<input type="slider" id="input-daysofmonth" name="JobSchedule[DaysOfMonth]" /> 
-	</div>
-	<div class="input-row">
-		<label for="input-months">Month(s)</label>
-		<input type="slider" id="input-months" name="JobSchedule[Months]" /> 
-	</div>
-	<div class="input-row">
-		<label for="input-daysofweek">Day(s) of Week</label>
-		<input type="slider" id="input-daysofweek" name="JobSchedule[DaysOfWeek]" /> 
+	<div class="accordion">
+		<h3>
+			<a href="#">Minutes</a>
+		</h3>
+		<div>
+			<input type="hidden" name="JobSchedule[Minutes]" />
+			<div id="tabs-minutes" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-minutes-1" class="tock-select-all" data-boundfield="JobSchedule[Minutes]">every minute</a></li>
+					<li><a href="#tabs-minutes-2">every (n) minutes</a></li>
+					<li><a href="#tabs-minutes-3">each selected minute</a></li>
+				</ul>
+				<div id="tabs-minutes-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-minutes-2">
+					<div class="slider"></div>
+				</div>
+				<div id="tabs-minutes-3">
+					<div id="minute-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+		<h3>
+			<a href="#">Hours</a>
+		</h3>
+		<div>
+			<input type="hidden" name="JobSchedule[Hours]" />
+			<div id="tabs-hours" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-hours-1" class="tock-select-all" data-boundfield="JobSchedule[Hours]">every hour</a></li>
+					<li><a href="#tabs-hours-2">every (n) hours</a></li>
+					<li><a href="#tabs-hours-3">each selected hour</a></li>
+				</ul>
+				<div id="tabs-hours-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-hours-2">
+					<div class="slider"></div>
+				</div>
+				<div id="tabs-hours-3">
+					<div id="hour-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+		<h3>
+			<a href="#">Days Of Month</a>
+		</h3>
+		<div>
+			<input type="hidden" name="JobSchedule[DaysOfMonth]" />
+			<div id="tabs-daysofmonth" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-daysofmonth-1" class="tock-select-all" data-boundfield="JobSchedule[DaysOfMonth]">every day</a></li>
+					<li><a href="#tabs-daysofmonth-2">every (n) days</a></li>
+					<li><a href="#tabs-daysofmonth-3">each selected day</a></li>
+				</ul>
+				<div id="tabs-daysofmonth-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-daysofmonth-2">
+					<div class="slider"></div>
+				</div>
+				<div id="tabs-daysofmonth-3">
+					<div id="dayofmonth-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+		<h3>
+			<a href="#">Months</a>
+		</h3>
+		<div>
+			<input type="hidden" name="JobSchedule[Months]" />
+			<div id="tabs-months" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-months-1" class="tock-select-all" data-boundfield="JobSchedule[Months]">every month</a></li>
+					<li><a href="#tabs-months-3">each selected month</a></li>
+				</ul>
+				<div id="tabs-months-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-months-3">
+					<div id="month-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+		<h3>
+			<a href="#">Days Of Week</a>
+		</h3>
+		<div>
+			<input type="hidden" name="JobSchedule[DaysOfWeek]" />
+			<div id="tabs-daysofweek" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-daysofweek-1" class="tock-select-all data-boundfield="JobSchedule[DaysOfWeek]"">every day of week</a></li>
+					<li><a href="#tabs-daysofweek-3">each selected day of week</a></li>
+				</ul>
+				<div id="tabs-daysofweek-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-daysofweek-3">
+					<div id="dayofweek-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="input-row">
 		<label for="input-retryonerror">Retry Job on Error</label>

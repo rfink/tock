@@ -4,9 +4,12 @@
 		<meta charset="utf-8" />
 		<title>{% block title %}Tock Admin{% endblock %}</title>
 		{% block head %}
-		<link href="/assets/styles/all.css" type="text/css" rel="stylesheet" media="screen" />
-		<!--<script type="text/javascript" src="/assets/scripts/"></script>-->
+		<link rel="stylesheet" href="/assets/scripts/jquery-ui-1.8.17/css/dot-luv/jquery-ui-1.8.17.custom.css" type="text/css" />
+		<link rel="stylesheet" href="/assets/styles/all.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="/assets/scripts/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="/assets/scripts/jquery-ui-1.8.17/js/jquery-ui-1.8.17.custom.min.js"></script>
 		{% endblock %}
+		{% block pageScripting %}{% endblock %}
 	</head>
 	<body>
 		<header>
