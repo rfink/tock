@@ -3,8 +3,42 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>{% block title %}Tock Admin{% endblock %}</title>
+		{% block head %}
+		<link href="/assets/styles/all.css" type="text/css" rel="stylesheet" media="screen" />
+		<!--<script type="text/javascript" src="/assets/scripts/"></script>-->
+		{% endblock %}
 	</head>
 	<body>
-
+		<header>
+			<nav>
+				<ul>
+					<li>
+						<span>Dashboard</span>>
+					</li>
+					<li>
+						<span>Jobs</span>
+						<ul>
+							<li><span>View</span></li>
+							<li><span>Queue Job</span></li>
+						</ul>
+					</li>
+					<li>
+						<span>Scheduler</span>
+						<ul>
+							<li><span>Create</span></li>
+							<li><span>Edit</span></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<section>
+			{% block content %}{% endblock %}
+		</section>
+		<footer>
+			<div>
+				
+			</div>
+		</footer>
 	</body>
 </html>
