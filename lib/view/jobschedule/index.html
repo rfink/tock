@@ -7,15 +7,25 @@
 {% block content %}
 <h2>Create Scheduled Job</h2>
 <form method="post" action="/jobschedule/post">
-	<div class="input-row">
-		<label for="input-command">System Command</label>
-		<input type="text" id="input-cmomand" name="JobSchedule[Command]" />
+	<div class="form">
+		<div class="input-row">
+			<label for="input-command">System Command</label>
+			<input type="text" id="input-cmomand" name="JobSchedule[Command]" />
+		</div>
+		<div class="input-row">	
+			<label for="input-params">Parameters</label>
+			<input type="array" id="input-params" name="JobSchedule[Params][]" />
+		</div>
+		<div class="input-row">
+			<label for="input-retryonerror">Retry Job on Error</label>
+			<input type="checkbox" value="1" id="input-retryonerror" name="JobSchedule[RetryOnErrors]" /> 
+		</div>
+		<div class="input-row">
+			<label for="input-logoutputonsuccess">Log Output on Success</label>
+			<input type="checkbox" id="input-logoutputonsuccess" name="JobSchedule[LogOutputOnSuccess]" /> 
+		</div>
 	</div>
-	<div class="input-row">	
-		<label for="input-params">Parameters</label>
-		<input type="array" id="input-params" name="JobSchedule[Params][]" />
-	</div>
-	<div class="accordion">
+	<div class="accordion tock-schedule-container">
 		<h3>
 			<a href="#">Minutes</a>
 			<div class="tock-value"></div>
@@ -123,14 +133,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="input-row">
-		<label for="input-retryonerror">Retry Job on Error</label>
-		<input type="checkbox" value="1" id="input-retryonerror" name="JobSchedule[RetryOnErrors]" /> 
-	</div>
-	<div class="input-row">
-		<label for="input-logoutputonsuccess">Log Output on Success</label>
-		<input type="checkbox" id="input-logoutputonsuccess" name="JobSchedule[LogOutputOnSuccess]" /> 
 	</div>
 	<div class="button-row">
 		<input type="submit" value="Create Scheduled Job" />

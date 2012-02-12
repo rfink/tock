@@ -8,14 +8,13 @@
 		<link rel="stylesheet" href="/assets/styles/all.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="/assets/scripts/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="/assets/scripts/jquery-ui-1.8.17/js/jquery-ui-1.8.17.custom.min.js"></script>
+		<script type="text/javascript" src="/assets/scripts/main.js"></script>
 		{% endblock %}
 		{% block pageScripting %}{% endblock %}
 	</head>
 	<body>
-		<header>
-			<div id="header">
-				<h1>TOCK</h1>
-			</div>
+		<section id="sidebar">
+			<header>TOCK</header>
 			<nav>
 				<ul>
 					<li>
@@ -37,9 +36,12 @@
 					</li>
 				</ul>
 			</nav>
-		</header>
-		<section>
-			{% block content %}{% endblock %}
+		</section>
+		<section id="main">
+			<div id="inner-header">&nbsp;</div>
+			<div id="content">
+				{% block content %}{% endblock %}
+			</div>
 		</section>
 		<footer>
 			<div>

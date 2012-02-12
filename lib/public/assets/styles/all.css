@@ -1,3 +1,21 @@
+html,body { margin: 0; padding: 0; font-family: arial; height: 100%; background-color: #dddde4; }
+header { height: 42px; background-color: #292929; font-size: 150%;
+		 color: #fff; line-height: 42px; padding: 8px 0 8px 5px; }
+label { padding: 6px; }
+input { border: 1px solid #999; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+		padding: 6px; }
+
+#sidebar { width: 220px; position: fixed; background-color: #454545; height: 100%; }
+#main { margin-left: 220px; }
+#inner-header { background-color: #292929; height: 42px; padding: 8px 0; }
+#content { padding: 0 35px 35px 35px; }
+
+.form { margin: 8px 20px; border: 1px solid #ccc; border-bottom: none; background-color: #fff; }
+div.input-row { overflow: auto; padding: 12px 0; border-bottom: 1px solid #ccc; }
+div.input-row label { display: block; float: left; width: 255px; text-align: right; }
+div.input-row input, div.input-row select { margin-left: 35px; display: block; float: left; }
+div.button-row { text-align: center; padding: 15px; }
+
 .tabs { min-height: 270px; }
 .accordion { font-size: 80%; }
 .accordion h3 { overflow: auto; }
@@ -9,5 +27,6 @@
 .block-selector div span { padding: 6px; background-color: #4a2727; border: 1px solid #927a7a;
 						   min-width: 18px; display: block; float: left; text-align: center; }
 .block-selector div span:hover { background-color: #7a1c1c; cursor: pointer; }
-.block-selector div span.ui-active { background-color: #ccc; }
+.block-selector div span.ui-active { background-color: #ccc; color: #333; }
 .block-selector div span.ui-active:hover {}
+.tock-schedule-container { margin: 25px 0; }
