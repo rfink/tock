@@ -1,4 +1,21 @@
 {% extends 'layout/default.html' %}
+{% block pageScripting %}
+<script type="text/javascript" src="http://localhost:17970/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+(function() {
+	if (!io) {
+		return;
+	}
+	socket = io.connect('http://localhost:17970');
+	socket.emit('jobSubscribe', {
+		jobId: "{{ _id }}"
+	});
+	socket.on('stdOut', function(data) {
+		$('#std-out-container').append(data.data);
+	});
+})();
+</script>
+{% endblock %}
 {% block content %}
-
+<pre id="std-out-container"></pre>
 {% endblock %}
