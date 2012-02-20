@@ -1,4 +1,30 @@
 {% extends 'layout/default.html' %}
 {% block content %}
-
+<h2>Jobs</h2>
+<table class="dataTable">
+	<thead>
+		<tr>
+			<th>Command</th>
+			<th>Params</th>
+			<th>Host</th>
+			<th>Port</th>
+			<th>Time Run</th>
+			<th>Total Time</th>
+			<th>Pid</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for job in jobs %}
+		<tr>
+			<td>{{ job.Command }}</td>
+			<td>{{ job.Params }}</td>
+			<td>{{ job.Host }}</td>
+			<td>{{ job.Port }}</td>
+			<td>{{ job.DateTimeRun }}</td>
+			<td>{{ job.TotalRunTime }} (ms)</td>
+			<td>{{ job.Pid }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
 {% endblock %}

@@ -45,7 +45,7 @@ div.button-row { text-align: center; padding: 15px; }
 .tock-param-remove:hover { cursor: pointer; }
 
 /* - Data table stuff - */
-.dataTable { width: 100%; }
+.dataTable { width: 100%; font-size: 80%; }
 table.dataTable { border-spacing: 0; }
 .dataTable tr { background-color: #fbfbfb; }
 .dataTable tr:hover { cursor: pointer; }
