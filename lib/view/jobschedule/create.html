@@ -1,0 +1,151 @@
+{% extends 'layout/default.html' %}
+
+{% block pageScripting %}
+<script type="text/javascript" src="/assets/scripts/scheduler.js"></script>
+{% endblock %}
+
+{% block content %}
+<h2>Create Scheduled Job</h2>
+<form method="post" action="/jobschedule/post">
+	<div class="form">
+		<div class="input-row">
+			<label for="input-command">System Command</label>
+			<input type="text" id="input-cmomand" name="JobSchedule[Command]" />
+		</div>
+		<div class="input-row">	
+			<label for="input-params">Parameters</label>
+			<input type="text" id="input-params" name="JobSchedule[Parameters][]" />
+			<img id="tock-param-add" src="/assets/images/application-plus-black.png" />
+		</div>
+		<div class="input-row">
+			<label for="input-retryonerror">Retry Job on Error</label>
+			<input type="checkbox" value="1" id="input-retryonerror" name="JobSchedule[RetryOnError]" /> 
+		</div>
+		<div class="input-row">
+			<label for="input-logoutputonsuccess">Log Output on Success</label>
+			<input type="checkbox" id="input-logoutputonsuccess" name="JobSchedule[LogOutputOnSuccess]" /> 
+		</div>
+		<div class="input-row">
+			<label for="input-bindhost">Bind Host</label>
+			<select name="JobSchedule[BindHost]">
+				<option value="">None</option>
+				{% for host in hosts %}
+				<option value="{{ host.host }}">{{ host.host }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+	<div class="accordion tock-schedule-container">
+		<h3>
+			<a href="#">Minutes</a>
+			<div class="tock-value"></div>
+		</h3>
+		<div class="tock-selection-div">
+			<input type="hidden" name="JobSchedule[Minutes]" class="tock-schedule-selector" />
+			<div id="tabs-minutes" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-minutes-1" class="tock-select-all">every minute</a></li>
+					<li><a href="#tabs-minutes-2">every (n) minutes</a></li>
+					<li><a href="#tabs-minutes-3" class="tock-select-each">each selected minute</a></li>
+				</ul>
+				<div id="tabs-minutes-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-minutes-2">
+					<div class="slider" data-max="59"></div>
+				</div>
+				<div id="tabs-minutes-3">
+					<div id="minute-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+		<h3>
+			<a href="#">Hours</a>
+			<div class="tock-value"></div>
+		</h3>
+		<div class="tock-selection-div">
+			<input type="hidden" name="JobSchedule[Hours]" class="tock-schedule-selector" />
+			<div id="tabs-hours" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-hours-1" class="tock-select-all">every hour</a></li>
+					<li><a href="#tabs-hours-2">every (n) hours</a></li>
+					<li><a href="#tabs-hours-3" class="tock-select-each">each selected hour</a></li>
+				</ul>
+				<div id="tabs-hours-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-hours-2">
+					<div class="slider" data-max="23"></div>
+				</div>
+				<div id="tabs-hours-3">
+					<div id="hour-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+		<h3>
+			<a href="#">Days Of Month</a>
+			<div class="tock-value"></div>
+		</h3>
+		<div class="tock-selection-div">
+			<input type="hidden" name="JobSchedule[DaysOfMonth]" class="tock-schedule-selector" />
+			<div id="tabs-daysofmonth" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-daysofmonth-1" class="tock-select-all">every day</a></li>
+					<li><a href="#tabs-daysofmonth-2">every (n) days</a></li>
+					<li><a href="#tabs-daysofmonth-3" class="tock-select-each">each selected day</a></li>
+				</ul>
+				<div id="tabs-daysofmonth-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-daysofmonth-2">
+					<div class="slider" data-max="31"></div>
+				</div>
+				<div id="tabs-daysofmonth-3">
+					<div id="dayofmonth-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+		<h3>
+			<a href="#">Months</a>
+			<div class="tock-value"></div>
+		</h3>
+		<div class="tock-selection-div">
+			<input type="hidden" name="JobSchedule[Months]" class="tock-schedule-selector" />
+			<div id="tabs-months" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-months-1" class="tock-select-all">every month</a></li>
+					<li><a href="#tabs-months-3" class="tock-select-each">each selected month</a></li>
+				</ul>
+				<div id="tabs-months-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-months-3">
+					<div id="month-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+		<h3>
+			<a href="#">Days Of Week</a>
+			<div class="tock-value"></div>
+		</h3>
+		<div class="tock-selection-div">
+			<input type="hidden" name="JobSchedule[DaysOfWeek]" class="tock-schedule-selector" />
+			<div id="tabs-daysofweek" class="tabs ui-tabs">
+				<ul>
+					<li><a href="#tabs-daysofweek-1" class="tock-select-all">every day of week</a></li>
+					<li><a href="#tabs-daysofweek-3" class="tock-select-each">each selected day of week</a></li>
+				</ul>
+				<div id="tabs-daysofweek-1">
+					<span class="font-extra-large">*</span>
+				</div>
+				<div id="tabs-daysofweek-3">
+					<div id="dayofweek-block" class="block-selector"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="button-row">
+		<input type="submit" value="Create Scheduled Job" />
+	</div>
+</form>
+{% endblock %}
