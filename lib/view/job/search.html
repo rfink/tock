@@ -9,6 +9,15 @@
 			<input type="text" name="Filter[Command]" />
 		</div>
 		<div class="input-row">
+			<label>Host</label>
+			<select name="Filter[Host]">
+				<option value="">Any</option>
+				{% for host in hosts %}
+				<option value="{{ host.host }}">{{ host.host }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="input-row">
 			<label>Start Date</label>
 			<input type="text" name="Filter[StartDate]" class="datetimepicker" />
 		</div>
