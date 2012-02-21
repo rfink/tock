@@ -8,29 +8,47 @@
 <h2>Create Scheduled Job</h2>
 <form method="post" action="/jobschedule/post">
 	<div class="form">
+		{% if _id %}
+		<input type="hidden" name="JobSchedule[_id]" value="{{ _id }}" />
+		{% endif %}
 		<div class="input-row">
 			<label for="input-command">System Command</label>
-			<input type="text" id="input-cmomand" name="JobSchedule[Command]" />
+			<input type="text" id="input-command" name="JobSchedule[Command]" value="{{ Command }}" />
 		</div>
+		{% for commandParam in Parameters %}
 		<div class="input-row">	
+			{% if loop.first %}
 			<label for="input-params">Parameters</label>
-			<input type="text" id="input-params" name="JobSchedule[Parameters][]" />
+			<input type="text" name="JobSchedule[Parameters][]" id="input-params" value="{{ commandParam }}" />
+			<img id="tock-param-add" src="/assets/images/application-plus-black.png" />
+			{% else %}
+			<label></label>
+			<input type="text" name="JobSchedule[Parameters][]" value="{{ commandParam }}" />
+			{% endif %}
+		</div>
+		{% empty %}
+		<div class="input-row">
+			<label for="input-params">Parameters</label>
+			<input type="text" name="JobSchedule[Parameters][]" id="input-params" />
 			<img id="tock-param-add" src="/assets/images/application-plus-black.png" />
 		</div>
+		{% endfor %}
 		<div class="input-row">
 			<label for="input-retryonerror">Retry Job on Error</label>
-			<input type="checkbox" value="1" id="input-retryonerror" name="JobSchedule[RetryOnError]" /> 
+			<input type="checkbox" value="1" id="input-retryonerror"
+				name="JobSchedule[RetryOnError]" {% if RetryOnError %}checked="checked"{% endif %} /> 
 		</div>
 		<div class="input-row">
 			<label for="input-logoutputonsuccess">Log Output on Success</label>
-			<input type="checkbox" id="input-logoutputonsuccess" name="JobSchedule[LogOutputOnSuccess]" /> 
+			<input type="checkbox" id="input-logoutputonsuccess"
+				name="JobSchedule[LogOutputOnSuccess]" {% if LogOutputOnSuccess %}checked="checked"{% endif %} /> 
 		</div>
 		<div class="input-row">
 			<label for="input-bindhost">Bind Host</label>
 			<select name="JobSchedule[BindHost]">
 				<option value="">None</option>
 				{% for host in hosts %}
-				<option value="{{ host.host }}">{{ host.host }}</option>
+				<option value="{{ host.host }}" {% if BindHost == host.host %}selected="selected"{% endif %}>{{ host.host }}</option>
 				{% endfor %}
 			</select>
 		</div>
@@ -41,7 +59,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Minutes]" class="tock-schedule-selector" />
+			<input type="hidden" name="JobSchedule[Minutes]" class="tock-schedule-selector" value="{{ Minutes }}" />
 			<div id="tabs-minutes" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-minutes-1" class="tock-select-all">every minute</a></li>
@@ -64,7 +82,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Hours]" class="tock-schedule-selector" />
+			<input type="hidden" name="JobSchedule[Hours]" class="tock-schedule-selector" value="{{ Hours }}" />
 			<div id="tabs-hours" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-hours-1" class="tock-select-all">every hour</a></li>
@@ -87,7 +105,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[DaysOfMonth]" class="tock-schedule-selector" />
+			<input type="hidden" name="JobSchedule[DaysOfMonth]" class="tock-schedule-selector" value="{{ DaysOfMonth }}" />
 			<div id="tabs-daysofmonth" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-daysofmonth-1" class="tock-select-all">every day</a></li>
@@ -110,7 +128,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Months]" class="tock-schedule-selector" />
+			<input type="hidden" name="JobSchedule[Months]" class="tock-schedule-selector" value="{{ Months }}" />
 			<div id="tabs-months" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-months-1" class="tock-select-all">every month</a></li>
@@ -129,7 +147,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[DaysOfWeek]" class="tock-schedule-selector" />
+			<input type="hidden" name="JobSchedule[DaysOfWeek]" class="tock-schedule-selector" value="{{ DaysOfWeek }}" />
 			<div id="tabs-daysofweek" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-daysofweek-1" class="tock-select-all">every day of week</a></li>

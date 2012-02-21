@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="/assets/scripts/superfish/superfish.css" media="screen" type="text/css" />
 		<script type="text/javascript" src="/assets/scripts/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="/assets/scripts/jquery-ui-1.8.17/js/jquery-ui-1.8.17.custom.min.js"></script>
+		<script type="text/javascript" src="/assets/scripts/jquery-ui-timepicker-addon.js"></script>
 		<script type="text/javascript" src="/assets/scripts/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" src="/assets/scripts/superfish/superfish.js"></script>
 		<script type="text/javascript" src="/assets/scripts/main.js"></script>
@@ -43,6 +44,11 @@
 		<section id="main">
 			<div id="inner-header">&nbsp;</div>
 			<div id="content">
+				<div id="messages">
+					{% for message in messages %}
+					<div class="{{ message.type }}">{{ message.message }}</div>
+					{% endfor %}
+				</div>
 				{% block content %}{% endblock %}
 			</div>
 		</section>

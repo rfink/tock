@@ -1,0 +1,42 @@
+{% extends 'layout/default.html' %}
+
+{% block pageScripting %}
+<script type="text/javascript" src="/assets/scripts/scheduler.js"></script>
+{% endblock %}
+
+{% block content %}
+<h2>Single Job Schedule</h2>
+<form method="post" action="/singlejob/post">
+	<div class="form">
+		<div class="input-row">
+			<label>Command</label>
+			<input type="text" name="Job[Command]" id="job-command" />
+		</div>
+		<div class="input-row">
+			<label>Parameters</label>
+			<input type="text" name="Job[Parameters][]" />
+			<img id="tock-param-add" src="/assets/images/application-plus-black.png" />
+		</div>
+		<div class="input-row">
+			<label>Bind Host</label>
+			<select name="Job[BindHost]">
+				<option value="">None</option>
+				{% for host in hosts %}
+				<option value="{{ host }}">{{ host }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="input-row">
+			<label>Date/Time</label>
+			<input type="text" name="Job[ScheduleDateTime]" id="job-date-time" class="datetimepicker" />
+		</div>
+		<div class="input-row">
+			<label>Run Job Now</label>
+			<input type="checkbox" name="Job[RunNow]" id="run-job-now" />
+		</div>
+	</div>
+	<div class="button-row">
+		<input type="submit" value="Schedule Job" />
+	</div>
+</form>
+{% endblock %}

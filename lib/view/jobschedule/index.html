@@ -14,6 +14,7 @@
 			<th>Retries</th>
 			<th>Supress Success Output</th>
 			<th>Bind Host</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,6 +30,7 @@
 			<td>{{ job.RetryOnError }}</td>
 			<td>{{ job.LogOutputOnSuccess }}</td>
 			<td>{{ job.BindHost }}</td>
+			<td><a href="/jobschedule/{{ job._id }}">Edit</a></td>
 		</tr>
 		{% endfor %}
 	</tbody>
