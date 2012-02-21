@@ -1,0 +1,54 @@
+{% extends 'layout/default.html' %}
+
+{% block content %}
+<h2>Search for Jobs</h2>
+<form method="get" action="/job/search">
+	<div class="form">
+		<div class="input-row">
+			<label>Command</label>
+			<input type="text" name="Filter[Command]" />
+		</div>
+		<div class="input-row">
+			<label>Start Date</label>
+			<input type="text" name="Filter[StartDate]" class="datetimepicker" />
+		</div>
+		<div class="input-row">
+			<label>End Date</label>
+			<input type="text" name="Filter[EndDate]" class="datetimepicker" />
+		</div>
+	</div>
+	<div class="button-row">
+		<input type="submit" value="Search" />
+	</div>
+</form>
+
+{% if results %}
+<table class="dataTable">
+	<thead>
+		<tr>
+			<th>Command</th>
+			<th>Params</th>
+			<th>Host</th>
+			<th>Port</th>
+			<th>Time Run</th>
+			<th>Total Run Time (ms)</th>
+			<th>Pid</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for job in results %}
+		<tr>
+			<td>{{ job.Command }}</td>
+			<td>{{ job.Params }}</td>
+			<td>{{ job.Host }}</td>
+			<td>{{ job.Port }}</td>
+			<td>{{ job.DateTimeRun }}</td>
+			<td>{{ job.TotalRunTime }}</td>
+			<td>{{ job.Pid }}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endif %}
+
+{% endblock %}

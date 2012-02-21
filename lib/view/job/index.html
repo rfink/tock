@@ -9,7 +9,7 @@
 			<th>Host</th>
 			<th>Port</th>
 			<th>Time Run</th>
-			<th>Total Time</th>
+			<th>Total Time (ms)</th>
 			<th>Pid</th>
 		</tr>
 	</thead>
@@ -21,7 +21,7 @@
 			<td>{{ job.Host }}</td>
 			<td>{{ job.Port }}</td>
 			<td>{{ job.DateTimeRun }}</td>
-			<td>{{ job.TotalRunTime }} (ms)</td>
+			<td>{{ job.TotalRunTime }}</td>
 			<td>{{ job.Pid }}</td>
 		</tr>
 		{% endfor %}
