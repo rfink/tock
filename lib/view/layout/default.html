@@ -45,8 +45,11 @@
 			<div id="inner-header">&nbsp;</div>
 			<div id="content">
 				<div id="messages">
-					{% for message in messages %}
-					<div class="{{ message.type }}">{{ message.message }}</div>
+					{% for messageTypes in messages %}
+						{% set myKey = forloop.key %}
+						{% for message in messageTypes %}
+							<div class="{{ myKey }}">{{ message }}</div>
+						{% endfor %}
 					{% endfor %}
 				</div>
 				{% block content %}{% endblock %}

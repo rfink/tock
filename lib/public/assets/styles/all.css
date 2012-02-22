@@ -44,6 +44,9 @@ div.button-row { text-align: center; padding: 15px; }
 #tock-param-add:hover { cursor: pointer; }
 .tock-param-remove:hover { cursor: pointer; }
 
+#messages { margin-top: 25px; }
+#messages .success { padding: 10px 20px; background-color: #6f6; border: 1px solid #292; margin-top: 5px; }
+
 /* - Data table stuff - */
 .dataTable { width: 100%; font-size: 80%; }
 table.dataTable { border-spacing: 0; }
