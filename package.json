@@ -24,7 +24,8 @@
 		"mongoose": "2.4.10",
 		"swig": "0.9.4",
 		"socket.io": "0.8.7",
-		"JSONParse": "0.0.1"
+		"JSONParse": "0.0.1",
+		"async": "0.1.15"
 	},
 	"engine": "node >= 0.6.0"
 }
