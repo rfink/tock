@@ -15,6 +15,7 @@
 			<label for="input-command">System Command</label>
 			<input type="text" id="input-command" name="JobSchedule[Command]" value="{{ Command }}" />
 		</div>
+		{% if Parameters && Parameters.length %}
 		{% for commandParam in Parameters %}
 		<div class="input-row">	
 			{% if loop.first %}
@@ -26,13 +27,14 @@
 			<input type="text" name="JobSchedule[Parameters][]" value="{{ commandParam }}" />
 			{% endif %}
 		</div>
-		{% empty %}
+		{% endfor %}
+		{% else %}
 		<div class="input-row">
 			<label for="input-params">Parameters</label>
 			<input type="text" name="JobSchedule[Parameters][]" id="input-params" />
 			<img id="tock-param-add" src="/assets/images/application-plus-black.png" />
 		</div>
-		{% endfor %}
+		{% endif %}
 		<div class="input-row">
 			<label for="input-bindhost">Bind Host</label>
 			<select name="JobSchedule[BindHost]">
@@ -41,6 +43,10 @@
 				<option value="{{ host.host }}" {% if BindHost == host.host %}selected="selected"{% endif %}>{{ host.host }}</option>
 				{% endfor %}
 			</select>
+		</div>
+		<div class="input-row">
+			<label for="input-maxrunning">Max # of Concurrent Running</label>
+			<input type="text" name="JobSchedule[MaxRunning]" id="input-maxrunning" value="{% if MaxRunning %}{{ MaxRunning }}{% else %}1{% endif %}" />
 		</div>
 	</div>
 	<div class="accordion tock-schedule-container">
