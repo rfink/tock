@@ -8,4 +8,10 @@ Tock uses MongoDB as the internal storage mechanism for schedules, and job resul
 
 USAGE
 
-	NOTE: Currently the setup for the init.d scripts are for linux only.  Feel free to adapt this for Windows or Mac, and submit a pull request.
+Tock is very easy and intiutive to use.  First, make sure MongoDB is installed either locally, or at an accessible location remotely.  If remote, make sure to edit the "dataStore" object in ./lib/config.js.  Also, make sure MongoDB is set up to run on startup.  There shouldn't be any need to make any configuration changes in MongoDB.  Next, you can create a symlink from /etc/init.d to ./bin/node.tock-master and ./bin/node.tock-api.  The init.d symlink for ./bin/node.tock-worker should be created on each individual worker machine.  Make sure to edit ./lib/config.js to set your hosts in the "hosts" array.  If you choose not to make a symlink, and instead wish to copy the bash scripts directly into /etc/init.d/, then make sure to edit the NODE_PATH and DAEMON variables in each script.
+
+Once that is done and you have restarted, tock should begin working.  You can control it via the admin UI, located at the port specified in config.js by going to http://{hostName}:{apiPort}/  That's it!
+
+USAGE NOTE
+
+Currently the setup for the init.d scripts are for linux only.  Feel free to adapt this for Windows or Mac, and submit a pull request.
