@@ -1,0 +1,13 @@
+TOCK
+
+Tock is a feature-rich distributed cron/job queue.  It has the ability to spawn jobs on remote
+servers using http requests, including a basic form of load balancing.  The remote server
+will spawn the job, and stream the output back to the tock master process.  The remote server
+also takes advantage of node.js native clustering, so it can take advantage of the machines' cores.
+
+Included in the tock package is an admin UI and API for creating scheduled jobs, one-off jobs,
+a dashboard for watching jobs in progress, and statistics about jobs.
+
+Tock uses MongoDB as the internal storage mechanism for schedules, and job results.  The standard
+out and standard error outputs are stored as files in gridFS.  Mongoose.js is used as the API
+into MongoDB.
