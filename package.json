@@ -27,5 +27,8 @@
 		"JSONParse": "0.0.1",
 		"async": "0.1.15"
 	},
+	"devDependencies": {
+		"nodeunit": "0.7.3"
+	},
 	"engine": "node >= 0.6.0"
 }

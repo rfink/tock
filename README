@@ -6,6 +6,16 @@ Included in the tock package is an admin UI and API for creating scheduled jobs,
 
 Tock uses MongoDB as the internal storage mechanism for schedules, and job results.  The standard out and standard error outputs are stored as files in gridFS.  Mongoose.js is used as the API into MongoDB.
 
+INSTALLATION
+
+Tock is published, so you can just:
+
+npm install tock
+
+Or you can checkout a development version from github:
+
+git clone git@github.com:rfink/tock.git
+
 USAGE
 
 Tock is very easy and intiutive to use.  First, make sure MongoDB is installed either locally, or at an accessible location remotely.  If remote, make sure to edit the "dataStore" object in ./lib/config.js.  Also, make sure MongoDB is set up to run on startup.  There shouldn't be any need to make any configuration changes in MongoDB.  Next, you can create a symlink from /etc/init.d to ./bin/node.tock-master and ./bin/node.tock-api.  The init.d symlink for ./bin/node.tock-worker should be created on each individual worker machine.  Make sure to edit ./lib/config.js to set your hosts in the "hosts" array.  If you choose not to make a symlink, and instead wish to copy the bash scripts directly into /etc/init.d/, then make sure to edit the NODE_PATH and DAEMON variables in each script.
