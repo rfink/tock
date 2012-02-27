@@ -8,8 +8,8 @@
 
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 NAME="node.tock-master"
-DAEMON="/var/www/html/tock/lib/tock.js"
-export NODE_PATH="/var/www/html/tock/"
+DAEMON="../../lib/tock.js"
+export NODE_PATH="../../"
 
 start() {
 	echo -n $"Starting $NODE_ENV $NAME: "
