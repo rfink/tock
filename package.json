@@ -3,7 +3,7 @@
 	"description": "Distributed cron-style job system that has many features missing from cron",
 	"main": "./index",
 	"author": "Ryan Fink",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"repository": {
 		"type": "git",
 		"url": "http://github.com/rfink/tock.git"
@@ -24,7 +24,7 @@
 		"mongoose": "2.4.10",
 		"swig": "0.9.4",
 		"socket.io": "0.8.7",
-		"JSONParse": "0.0.1",
+		"JSONStream": "0.1.3",
 		"async": "0.1.15"
 	},
 	"devDependencies": {
