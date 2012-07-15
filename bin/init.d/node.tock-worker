@@ -9,6 +9,7 @@
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 NAME="node.tock-worker"
 DAEMON="../../lib/worker.js"
+SOCKET_PORT=`node -e "console.log(require('../../lib/config.js').apiPort);"`
 export NODE_PATH="../../"
 
 start() {
@@ -30,15 +31,15 @@ running() {
 }
 
 stop() {
-	
+	echo -n $"Stopping $NODE_ENV $NAME: "
 }
 
 restart() {
-	
+	echo -n $"Restarting $NODE_ENV $NAME: "
 }
 
 status() {
-	
+	return
 }
 
 case "$1" in

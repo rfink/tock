@@ -9,6 +9,7 @@
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 NAME="node.tock-master"
 DAEMON="../../lib/tock.js"
+SOCKET_PORT=`node -e "console.log(require('../../lib/config.js').masterPort);"`
 export NODE_PATH="../../"
 
 start() {
@@ -30,7 +31,7 @@ running() {
 }
 
 stop() {
-	
+	echo -n $"Stopping $NODE_ENV $NAME: "
 }
 
 restart() {

@@ -9,7 +9,13 @@
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 NAME="node.tock-api"
 DAEMON="../../lib/api.js"
+SOCKET_PORT=`node -e "console.log(require('../../lib/config.js').apiPort);"`
 export NODE_PATH="../../"
+
+# Acquire machine env vars for node
+[ -f ~/.profile ] && . ~/.profile
+[ -f ~/.bash_profile ] && . ~/.bash_profile
+[ -f /etc/profile ] && . /etc/profile
 
 start() {
 	echo -n $"Starting $NODE_ENV $NAME: "
@@ -30,15 +36,15 @@ running() {
 }
 
 stop() {
-	
+	echo -n $"Stopping $NODE_ENV $NAME: "
 }
 
 restart() {
-	
+	echo -n $"Restarting $NODE_ENV $NAME: "
 }
 
 status() {
-	
+	return
 }
 
 case "$1" in
