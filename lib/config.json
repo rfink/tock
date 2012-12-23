@@ -1,0 +1,12 @@
+{
+	"dataStore": {
+		"host": "localhost",
+		"port": 27017,
+		"username": null,
+		"password": null
+	},
+	"masterHost": "localhost",
+	"masterExternalPort": 16162,
+	"masterInternalPort": 31242,
+	"slaveInternalPort": 31243
+}
