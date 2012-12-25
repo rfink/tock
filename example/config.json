@@ -3,7 +3,8 @@
 		"host": "localhost",
 		"port": 27017,
 		"username": null,
-		"password": null
+		"password": null,
+		"dbName": "Tock"
 	},
 	"masterHost": "localhost",
 	"masterExternalPort": 16162,

@@ -1,15 +1,13 @@
 {% extends 'layout/default.html' %}
 {% block pageScripting %}
-<script src="http://localhost:16162/socket.io/socket.io.js"></script>
+<script src="http://localhost:{{ masterExternalPort }}/socket.io/socket.io.js"></script>
 <script>
 (function() {
-	if (!io) {
-		return;
-	}
-	socket = io.connect('http://localhost:16162');
-	socket.emit('jobSubscribe', {
-		jobId: "{{ _id }}"
-	});
+	if (!io) return;
+	socket = io.connect('http://localhost:{{ masterExternalPort }}');
+  socket.on('connect', function() {
+    socket.emit('jobSubscribe', { jobId: "{{ _id }}" });
+  });
 	socket.on('stdOut', function(data) {
 		$('#std-out-container').append(data.data);
 	});

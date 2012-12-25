@@ -9,44 +9,35 @@
 <form method="post" action="/jobschedule/post">
 	<div class="form">
 		{% if _id %}
-		<input type="hidden" name="JobSchedule[_id]" value="{{ _id }}" />
+		<input type="hidden" name="jobSchedule[_id]" value="{{ _id }}" />
 		{% endif %}
 		<div class="input-row">
 			<label for="input-command">System Command</label>
-			<input type="text" id="input-command" name="JobSchedule[Command]" value="{{ Command }}" />
+			<input type="text" id="input-command" name="jobSchedule[command]" value="{{ command }}" />
 		</div>
-		{% if Parameters && Parameters.length %}
-		{% for commandParam in Parameters %}
+		{% if parameters && parameters.length %}
+		{% for commandParam in parameters %}
 		<div class="input-row">	
 			{% if loop.first %}
 			<label for="input-params">Parameters</label>
-			<input type="text" name="JobSchedule[Parameters][]" id="input-params" value="{{ commandParam }}" />
+			<input type="text" name="jobSchedule[parameters][]" id="input-params" value="{{ commandParam }}" />
 			<img id="tock-param-add" src="/assets/images/application-plus-black.png" />
 			{% else %}
 			<label></label>
-			<input type="text" name="JobSchedule[Parameters][]" value="{{ commandParam }}" />
+			<input type="text" name="jobSchedule[parameters][]" value="{{ commandParam }}" />
 			{% endif %}
 		</div>
 		{% endfor %}
 		{% else %}
 		<div class="input-row">
 			<label for="input-params">Parameters</label>
-			<input type="text" name="JobSchedule[Parameters][]" id="input-params" />
+			<input type="text" name="jobSchedule[parameters][]" id="input-params" />
 			<img id="tock-param-add" src="/assets/images/application-plus-black.png" />
 		</div>
 		{% endif %}
 		<div class="input-row">
-			<label for="input-bindhost">Bind Host</label>
-			<select name="JobSchedule[BindHost]">
-				<option value="">None</option>
-				{% for host in hosts %}
-				<option value="{{ host.host }}" {% if BindHost == host.host %}selected="selected"{% endif %}>{{ host.host }}</option>
-				{% endfor %}
-			</select>
-		</div>
-		<div class="input-row">
 			<label for="input-maxrunning">Max # of Concurrent Running</label>
-			<input type="text" name="JobSchedule[MaxRunning]" id="input-maxrunning" value="{% if MaxRunning %}{{ MaxRunning }}{% else %}1{% endif %}" />
+			<input type="text" name="jobSchedule[maxRunning]" id="input-maxrunning" value="{% if maxRunning %}{{ maxRunning }}{% else %}1{% endif %}" />
 		</div>
 	</div>
 	<div class="accordion tock-schedule-container">
@@ -55,7 +46,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Minutes]" class="tock-schedule-selector" value="{{ Minutes }}" />
+			<input type="hidden" name="jobSchedule[minutes]" class="tock-schedule-selector" value="{{ minutes }}" />
 			<div id="tabs-minutes" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-minutes-1" class="tock-select-all">every minute</a></li>
@@ -78,7 +69,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Hours]" class="tock-schedule-selector" value="{{ Hours }}" />
+			<input type="hidden" name="jobSchedule[hours]" class="tock-schedule-selector" value="{{ hours }}" />
 			<div id="tabs-hours" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-hours-1" class="tock-select-all">every hour</a></li>
@@ -101,7 +92,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[DaysOfMonth]" class="tock-schedule-selector" value="{{ DaysOfMonth }}" />
+			<input type="hidden" name="jobSchedule[daysOfMonth]" class="tock-schedule-selector" value="{{ daysOfMonth }}" />
 			<div id="tabs-daysofmonth" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-daysofmonth-1" class="tock-select-all">every day</a></li>
@@ -124,7 +115,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[Months]" class="tock-schedule-selector" value="{{ Months }}" />
+			<input type="hidden" name="jobSchedule[months]" class="tock-schedule-selector" value="{{ months }}" />
 			<div id="tabs-months" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-months-1" class="tock-select-all">every month</a></li>
@@ -143,7 +134,7 @@
 			<div class="tock-value"></div>
 		</h3>
 		<div class="tock-selection-div">
-			<input type="hidden" name="JobSchedule[DaysOfWeek]" class="tock-schedule-selector" value="{{ DaysOfWeek }}" />
+			<input type="hidden" name="jobSchedule[daysOfWeek]" class="tock-schedule-selector" value="{{ daysOfWeek }}" />
 			<div id="tabs-daysofweek" class="tabs ui-tabs">
 				<ul>
 					<li><a href="#tabs-daysofweek-1" class="tock-select-all">every day of week</a></li>

@@ -22,7 +22,7 @@
 		"underscore": "1.2.x",
 		"express": "2.5.x",
 		"mongoose": "2.7.x",
-		"swig": "0.11.x",
+		"swig": "0.13.x",
 		"socket.io": "0.9.x",
 		"axon": "0.4.5",
 		"async": "0.1.22"

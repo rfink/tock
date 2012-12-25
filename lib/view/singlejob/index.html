@@ -10,29 +10,20 @@
 	<div class="form">
 		<div class="input-row">
 			<label>Command</label>
-			<input type="text" name="Job[Command]" id="job-command" />
+			<input type="text" name="job[command]" id="job-command" />
 		</div>
 		<div class="input-row">
 			<label>Parameters</label>
-			<input type="text" name="Job[Parameters][]" />
+			<input type="text" name="job[parameters][]" />
 			<img id="tock-param-add" src="/assets/images/application-plus-black.png" />
 		</div>
 		<div class="input-row">
-			<label>Bind Host</label>
-			<select name="Job[BindHost]">
-				<option value="">None</option>
-				{% for host in hosts %}
-				<option value="{{ host }}">{{ host }}</option>
-				{% endfor %}
-			</select>
-		</div>
-		<div class="input-row">
 			<label>Date/Time</label>
-			<input type="text" name="Job[ScheduleDateTime]" id="job-date-time" class="datetimepicker" />
+			<input type="text" name="job[scheduleDateTime]" id="job-date-time" class="datetimepicker" />
 		</div>
 		<div class="input-row">
 			<label>Run Job Now</label>
-			<input type="checkbox" name="Job[RunSync]" id="run-job-now" />
+			<input type="checkbox" name="job[runSync]" id="run-job-now" />
 		</div>
 	</div>
 	<div class="button-row">
