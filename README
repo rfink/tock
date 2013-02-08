@@ -1,6 +1,6 @@
 TOCK
 
-Tock is a feature-rich distributed cron/job queue.  It has the ability to spawn jobs on remote servers using http requests, including a basic form of load balancing.  The remote server will spawn the job, and stream the output back to the tock master process.  The remote server also takes advantage of node.js native clustering, so it can take advantage of the machines' cores.
+Tock is a feature-rich distributed cron/job queue.  It has the ability to spawn jobs on remote servers using axon as a transport layer, including a basic form of load balancing.  The remote server will spawn the job, and stream the output back to the tock master process.
 
 Included in the tock package is an admin UI and API for creating scheduled jobs, one-off jobs, a dashboard for watching jobs in progress, and statistics about jobs.
 
@@ -18,7 +18,7 @@ git clone git@github.com:rfink/tock.git
 
 USAGE
 
-Tock is very easy and intiutive to use.  First, make sure MongoDB is installed either locally, or at an accessible location remotely.  If remote, make sure to edit the "dataStore" object in ./lib/config.js.  Also, make sure MongoDB is set up to run on startup.  There shouldn't be any need to make any configuration changes in MongoDB.  Next, you can create a symlink from /etc/init.d to ./bin/node.tock-master and ./bin/node.tock-api.  The init.d symlink for ./bin/node.tock-worker should be created on each individual worker machine.  Make sure to edit ./lib/config.js to set your hosts in the "hosts" array.  If you choose not to make a symlink, and instead wish to copy the bash scripts directly into /etc/init.d/, then make sure to edit the NODE_PATH and DAEMON variables in each script.
+Tock is very easy and intiutive to use.  First, make sure MongoDB is installed either locally, or at an accessible location remotely.  If remote, make sure to edit the "mongo" object in ./lib/config.json.  Also, make sure MongoDB is set up to run on startup.  There shouldn't be any need to make any configuration changes in MongoDB.  Next, you can create a symlink from /etc/init.d to ./bin/node.tock-master and ./bin/node.tock-api.  The init.d symlink for ./bin/node.tock-worker should be created on each individual worker machine.  If you choose not to make a symlink, and instead wish to copy the bash scripts directly into /etc/init.d/, then make sure to edit the NODE_PATH and DAEMON variables in each script.
 
 Once that is done and you have restarted, tock should begin working.  You can control it via the admin UI, located at the port specified in config.js by going to http://{hostName}:{apiPort}/  That's it!
 

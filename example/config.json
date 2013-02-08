@@ -1,13 +1,24 @@
 {
-	"dataStore": {
-		"host": "localhost",
-		"port": 27017,
-		"username": null,
-		"password": null,
-		"dbName": "Tock"
+	"*": {
+		"mongo": {
+			"host": "localhost",
+			"port": 27017,
+			"user": null,
+			"password": null,
+			"dbName": "Tock"
+		},
+		"masterHost": "localhost",
+		"masterExternalPort": 16162,
+		"masterInternalPort": 31242,
+		"slaveInternalPort": 31243
 	},
-	"masterHost": "localhost",
-	"masterExternalPort": 16162,
-	"masterInternalPort": 31242,
-	"slaveInternalPort": 31243
+	"development": {
+		"mongo": {
+			"host": "localhost",
+			"port": 27017,
+			"user": null,
+			"password": null,
+			"dbName": "Tock"
+		}
+	}
 }

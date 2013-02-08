@@ -9,7 +9,7 @@
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 NAME="node.tock-master"
 DAEMON="../../lib/tock.js"
-SOCKET_PORT=`node -e "console.log(require('../../lib/config.js').masterPort);"`
+SOCKET_PORT=`node -e "console.log(require('../../lib/config.json').masterPort);"`
 export NODE_PATH="../../"
 
 start() {

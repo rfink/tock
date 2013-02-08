@@ -25,10 +25,13 @@
 		"swig": "0.13.x",
 		"socket.io": "0.9.x",
 		"axon": "0.4.5",
-		"async": "0.1.22"
+		"async": "0.1.22",
+		"envcfg": "0.0.3",
+    "debug": "0.7.0"
 	},
 	"devDependencies": {
-		"nodeunit": "0.7.3"
+    "should": "1.1.0",
+    "mocha": "1.3.2"
 	},
 	"engine": "node >= 0.6.0"
 }
