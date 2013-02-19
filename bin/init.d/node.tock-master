@@ -8,8 +8,8 @@
 
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 NAME="node.tock-master"
-DAEMON="../../lib/tock.js"
-SOCKET_PORT=`node -e "console.log(require('../../lib/config.json').masterPort);"`
+DAEMON="../../index.js"
+SOCKET_PORT=`node -e "console.log(require('../../lib/config.json').masterInternalPort);"`
 export NODE_PATH="../../"
 
 start() {
@@ -35,11 +35,11 @@ stop() {
 }
 
 restart() {
-	
+	echo -n "Restarting"
 }
 
 status() {
-	
+	echo -n "Status"
 }
 
 case "$1" in

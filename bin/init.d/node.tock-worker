@@ -9,7 +9,7 @@
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 NAME="node.tock-worker"
 DAEMON="../../lib/worker.js"
-SOCKET_PORT=`node -e "console.log(require('../../lib/config.json').apiPort);"`
+SOCKET_PORT=`node -e "console.log(require('../../lib/config.json').slaveInternalPort);"`
 export NODE_PATH="../../"
 
 start() {
