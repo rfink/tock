@@ -40,7 +40,7 @@ describe('tock', function() {
     jobSchedule = new JobSchedule(jobScheduleData);
 
     function finish(err) {
-      if (--ctr) return done();
+      if (!--ctr) return done();
     }
 
     singleJob.save(finish);
@@ -64,6 +64,8 @@ describe('tock', function() {
 
   it('should start a job and then kill it', function(done) {
     function spawn(job) {
+      should.exist(job.pid);
+      should.exist(job.host);
       tock.killJob(job._id);
     };
     var kill = (function() {
@@ -82,13 +84,13 @@ describe('tock', function() {
         if (!--ctr) {
           tock.on('job:killed', kill);
           tock.on('job:spawn', spawn); 
+          tock.dispatch();
         }
       };
     })();
     worker.on('jobKiller:connect', ready);
     worker.on('subscriber:connect', ready);
     worker.start();
-    tock.dispatch();
   });
 
 });

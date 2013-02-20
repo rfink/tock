@@ -6,7 +6,8 @@ test:
 	@NODE_ENV=test ./node_modules/.bin/mocha $(TESTS) \
 		--require "should" \
 		--growl \
-		--reporter $(REPORTER)
+		--reporter $(REPORTER) \
+		--timeout 5000
 
 test-cov: lib-cov
 	@TGLR_COV=1 $(MAKE) test REPORTER=html-cov > coverage.html

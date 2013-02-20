@@ -28,7 +28,8 @@
 		"async": "0.2.x",
 		"envcfg": "0.0.x",
     "debug": "0.7.x",
-    "consolidate": "0.8.x"
+    "consolidate": "0.8.x",
+    "connect-flash": "0.1.x"
 	},
 	"devDependencies": {
     "should": "*",

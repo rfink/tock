@@ -2,3 +2,5 @@ node_modules
 lib/config.json
 Capfile
 config/*
+lib-cov
+coverage.html
