@@ -16,13 +16,13 @@
 	<tbody>
 		{% for job in jobs %}
 		<tr>
-			<td>{{ job.Command }}</td>
-			<td>{{ job.Params }}</td>
-			<td>{{ job.Host }}</td>
-			<td>{{ job.Port }}</td>
-			<td>{{ job.DateTimeRun }}</td>
-			<td>{{ job.TotalRunTime }}</td>
-			<td>{{ job.Pid }}</td>
+			<td>{{ job.command }}</td>
+			<td>{{ job.params }}</td>
+			<td>{{ job.host }}</td>
+			<td>{{ job.port }}</td>
+			<td>{{ job.dateTimeRun }}</td>
+			<td>{{ job.totalRunTime }}</td>
+			<td>{{ job.pid }}</td>
 		</tr>
 		{% endfor %}
 	</tbody>

@@ -1,8 +1,4 @@
 {% extends 'layout/default.html' %}
-{% block pageScripting %}
-<script type="text/javascript" src="http://localhost:17970/socket.io/socket.io.js"></script>
-<script type="text/javascript" src="/assets/scripts/dashboard.js"></script>
-{% endblock %}
 {% block content %}
 <h2>Job Status Dashboard</h2>
 <table class="dataTable">
@@ -21,4 +17,24 @@
 	<tbody>
 	</tbody>
 </table>
+{% endblock %}
+{% block pageScripting %}
+<script type="text/template" id="tock-dash-row-template">
+	<tr>
+		<td><%= data.type %></td>
+		<td><a href="/job/<%= data.jobId %>"><%= data.jobId %></a></td>
+		<td><%= data.command %></td>
+		<td><%= data.params %></td>
+		<td><%= data.host %></td>
+		<td><%= data.time %></td>
+		<td><%= data.message %></td>
+		<% if (data.status === 'running') { %>
+		<td><a href="/job/<%= data.jobId %>/kill" class="tock-kill-job">Kill Job</a></td>
+		<% } else { %>
+		<td><%= data.jobId %></td>
+		<% } %>
+	</tr>
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/assets/scripts/dashboard.js"></script>
 {% endblock %}
