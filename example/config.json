@@ -10,7 +10,8 @@
 		"masterHost": "localhost",
 		"masterExternalPort": 16162,
 		"masterInternalPort": 31242,
-		"slaveInternalPort": 31243
+		"slaveInternalPort": 31243,
+		"jobKillPort": 31244
 	},
 	"development": {
 		"mongo": {
@@ -19,6 +20,15 @@
 			"user": null,
 			"password": null,
 			"dbName": "Tock"
+		}
+	},
+	"test": {
+		"mongo": {
+			"host": "localhost",
+			"port": 27017,
+			"user": null,
+			"password": null,
+			"dbName": "TockTest"
 		}
 	}
 }

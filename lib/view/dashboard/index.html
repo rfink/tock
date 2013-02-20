@@ -19,9 +19,6 @@
 </table>
 {% endblock %}
 {% block pageScripting %}
-<script>
-	var ioPort = {{ masterExternalPort }};
-</script>
 <script type="text/template" id="tock-dash-row-template">
 	<tr>
 		<td><%= data.type %></td>
@@ -38,6 +35,6 @@
 		<% } %>
 	</tr>
 </script>
-<script src="http://localhost:{{ masterExternalPort }}/socket.io/socket.io.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 <script src="/assets/scripts/dashboard.js"></script>
 {% endblock %}
