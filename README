@@ -18,10 +18,6 @@ git clone git@github.com:rfink/tock.git
 
 USAGE
 
-Tock is very easy and intiutive to use.  First, make sure MongoDB is installed either locally, or at an accessible location remotely.  If remote, make sure to edit the "mongo" object in ./lib/config.json.  Also, make sure MongoDB is set up to run on startup.  There shouldn't be any need to make any configuration changes in MongoDB.  Next, you can create a symlink from /etc/init.d to ./bin/node.tock-master and ./bin/node.tock-api.  The init.d symlink for ./bin/node.tock-worker should be created on each individual worker machine.  If you choose not to make a symlink, and instead wish to copy the bash scripts directly into /etc/init.d/, then make sure to edit the NODE_PATH and DAEMON variables in each script.
+Tock is very easy and intiutive to use.  First, make sure MongoDB is installed either locally, or at an accessible location remotely.  If remote, make sure to edit the "mongo" object in ./lib/config.json.  ./lib/config.json is not included in .gitignore, so that you can manually configure your own.  See ./examples/config.json for a full example configuration (you can likely just copy that).  Also, make sure MongoDB is set up to run on startup.  There shouldn't be any need to make any configuration changes in MongoDB.  To run, use your favorite node / process monitor.  I personally like mongroup (https://github.com/jgallen23/mongroup).  You can also run manually by running node . in this directory.
 
-Once that is done and you have restarted, tock should begin working.  You can control it via the admin UI, located at the port specified in config.js by going to http://{hostName}:{apiPort}/  That's it!
-
-USAGE NOTE
-
-Currently the setup for the init.d scripts are for linux only.  Feel free to adapt this for Windows or Mac, and submit a pull request.
+Once that is done, tock should begin working.  You can control it via the admin UI, located at the port specified in config.json by going to http://{hostName}:{apiPort}/  That's it!
