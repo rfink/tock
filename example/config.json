@@ -11,7 +11,30 @@
 		"masterExternalPort": 16162,
 		"masterInternalPort": 31242,
 		"slaveInternalPort": 31243,
-		"jobKillPort": 31244
+		"jobKillPort": 31244,
+		"logging": {
+			"mail": {
+				"level": "error",
+				"to": "nobody@nowhere.com"
+			},
+			"console": {
+				"level": "info",
+				"json": true
+			},
+			"mongodb": {
+				"level": [ "warn", "error" ],
+				"db": "Tock",
+				"collection": "logs",
+				"host": "localhost",
+				"port": 27017,
+				"username": null,
+				"password": null
+			}
+		},
+		"transports": [
+			"Mail",
+			"MongoDB"
+		]
 	},
 	"development": {
 		"mongo": {
@@ -20,7 +43,11 @@
 			"user": null,
 			"password": null,
 			"dbName": "Tock"
-		}
+		},
+		"transports": [
+			"Console",
+			"Mail"
+		]
 	},
 	"test": {
 		"mongo": {
@@ -29,6 +56,9 @@
 			"user": null,
 			"password": null,
 			"dbName": "TockTest"
-		}
+		},
+		"transports": [
+			"Console"
+		]
 	}
 }

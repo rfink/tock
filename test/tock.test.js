@@ -68,28 +68,46 @@ describe('tock', function() {
       should.exist(job.host);
       tock.killJob(job._id);
     };
+    var destroy = (function() {
+      var ctr = 2;
+      return function() {
+        if (!--ctr) {
+          done();
+        }
+      }
+    })();
     var kill = (function() {
       var ctr = 2;
       return function(data) {
         if (!--ctr) {
-          tock.destroy();
-          worker.destroy();
+          tock.destroy(destroy);
+          worker.destroy(destroy);
           done();
         }
       };
     })();
-    var ready = (function() {
+    function ready() {
+      tock.on('job:killed', kill);
+      tock.on('job:spawn', spawn); 
+      tock.dispatch();
+    }
+    worker.on('connect', ready);
+    worker.start();
+  });
+
+  it('should start a job and finish as expected', function(done) {
+    var complete = (function() {
       var ctr = 2;
-      return function(done) {
+      return function() {
         if (!--ctr) {
-          tock.on('job:killed', kill);
-          tock.on('job:spawn', spawn); 
-          tock.dispatch();
+          done();
         }
-      };
+      }
     })();
-    worker.on('jobKiller:connect', ready);
-    worker.on('subscriber:connect', ready);
+    tock.on('job:complete', complete);
+    worker.on('connect', function() {
+      tock.dispatch();
+    });
     worker.start();
   });
 
