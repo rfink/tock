@@ -95,4 +95,20 @@ describe('tock', function() {
     worker.start();
   });
 
+  it('should start a job and finish as expected', function(done) {
+    var complete = (function() {
+      var ctr = 2;
+      return function() {
+        if (!--ctr) {
+          done();
+        }
+      }
+    })();
+    tock.on('job:complete', complete);
+    worker.on('connect', function() {
+      tock.dispatch();
+    });
+    worker.start();
+  });
+
 });
