@@ -11,21 +11,19 @@
 			<th>Days Of Month</th>
 			<th>Months</th>
 			<th>Days Of Week</th>
-			<th>Bind Host</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		{% for job in schedule %}
 		<tr>
-			<td>{{ job.Command }}</td>
-			<td>{{ job.Params }}</td>
-			<td>{{ job.Minutes }}</td>
-			<td>{{ job.Hours }}</td>
-			<td>{{ job.DaysOfMonth }}</td>
-			<td>{{ job.Months }}</td>
-			<td>{{ job.DaysOfWeek }}</td>
-			<td>{{ job.BindHost }}</td>
+			<td>{{ job.command }}</td>
+			<td>{{ job.params }}</td>
+			<td>{{ job.minutes }}</td>
+			<td>{{ job.hours }}</td>
+			<td>{{ job.daysOfMonth }}</td>
+			<td>{{ job.months }}</td>
+			<td>{{ job.daysOfWeek }}</td>
 			<td><a href="/jobschedule/{{ job._id }}">Edit</a></td>
 		</tr>
 		{% endfor %}

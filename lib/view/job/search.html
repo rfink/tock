@@ -6,24 +6,15 @@
 	<div class="form">
 		<div class="input-row">
 			<label>Command</label>
-			<input type="text" name="Filter[Command]" />
-		</div>
-		<div class="input-row">
-			<label>Host</label>
-			<select name="Filter[Host]">
-				<option value="">Any</option>
-				{% for host in hosts %}
-				<option value="{{ host.host }}">{{ host.host }}</option>
-				{% endfor %}
-			</select>
+			<input type="text" name="filter[command]" />
 		</div>
 		<div class="input-row">
 			<label>Start Date</label>
-			<input type="text" name="Filter[StartDate]" class="datetimepicker" />
+			<input type="text" name="filter[startDate]" class="datetimepicker" />
 		</div>
 		<div class="input-row">
 			<label>End Date</label>
-			<input type="text" name="Filter[EndDate]" class="datetimepicker" />
+			<input type="text" name="filter[endDate]" class="datetimepicker" />
 		</div>
 	</div>
 	<div class="button-row">
@@ -47,13 +38,13 @@
 	<tbody>
 	{% for job in results %}
 		<tr>
-			<td>{{ job.Command }}</td>
-			<td>{{ job.Params }}</td>
-			<td>{{ job.Host }}</td>
-			<td>{{ job.Port }}</td>
-			<td>{{ job.DateTimeRun }}</td>
-			<td>{{ job.TotalRunTime }}</td>
-			<td>{{ job.Pid }}</td>
+			<td>{{ job.command }}</td>
+			<td>{{ job.params }}</td>
+			<td>{{ job.host }}</td>
+			<td>{{ job.port }}</td>
+			<td>{{ job.dateTimeRun }}</td>
+			<td>{{ job.totalRunTime }}</td>
+			<td>{{ job.pid }}</td>
 		</tr>
 	{% endfor %}
 	</tbody>

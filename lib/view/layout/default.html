@@ -7,14 +7,7 @@
 		<link rel="stylesheet" href="/assets/scripts/jquery-ui-1.8.17/css/dot-luv/jquery-ui-1.8.17.custom.css" type="text/css" />
 		<link rel="stylesheet" href="/assets/styles/all.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="/assets/scripts/superfish/superfish.css" media="screen" type="text/css" />
-		<script type="text/javascript" src="/assets/scripts/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript" src="/assets/scripts/jquery-ui-1.8.17/js/jquery-ui-1.8.17.custom.min.js"></script>
-		<script type="text/javascript" src="/assets/scripts/jquery-ui-timepicker-addon.js"></script>
-		<script type="text/javascript" src="/assets/scripts/jquery.dataTables.min.js"></script>
-		<script type="text/javascript" src="/assets/scripts/superfish/superfish.js"></script>
-		<script type="text/javascript" src="/assets/scripts/main.js"></script>
 		{% endblock %}
-		{% block pageScripting %}{% endblock %}
 	</head>
 	<body>
 		<section id="sidebar">
@@ -60,5 +53,13 @@
 				&copy;{{ year }} Ryan Fink
 			</div>
 		</footer>
+		<script src="/assets/scripts/underscore-min.js"></script>
+		<script src="/assets/scripts/jquery-1.7.1.min.js"></script>
+		<script src="/assets/scripts/jquery-ui-1.8.17/js/jquery-ui-1.8.17.custom.min.js"></script>
+		<script src="/assets/scripts/jquery-ui-timepicker-addon.js"></script>
+		<script src="/assets/scripts/jquery.dataTables.min.js"></script>
+		<script src="/assets/scripts/superfish/superfish.js"></script>
+		<script src="/assets/scripts/main.js"></script>
+		{% block pageScripting %}{% endblock %}
 	</body>
 </html>
