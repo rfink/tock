@@ -15,6 +15,7 @@ var should = require('should')
         , months: '*'
         , daysOfWeek: '*'
         , maxRunning: 1
+        , active: true
       }
     , singleJobData = {
         command: 'sleep'

@@ -39,6 +39,10 @@
 			<label for="input-maxrunning">Max # of Concurrent Running</label>
 			<input type="text" name="jobSchedule[maxRunning]" id="input-maxrunning" value="{% if maxRunning %}{{ maxRunning }}{% else %}1{% endif %}" />
 		</div>
+		<div class="input-row">
+			<label for="input-active">Is active</label>
+			<input type="checkbox" name="jobSchedule[active]" id="input-active" value="1" {% if _id and active %}checked="checked"{% else if not _id %}checked="checked"{% endif %} />
+		</div>
 	</div>
 	<div class="accordion tock-schedule-container">
 		<h3>
