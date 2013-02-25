@@ -8,7 +8,7 @@ var should = require('should')
     , mongoose = require('../lib/mongocommon')
     , jobScheduleData = {
         command: 'sleep'
-        , parameters: [ '10' ]
+        , parameters: [ '1' ]
         , minutes: '*'
         , hours: '*'
         , daysOfMonth: '*'
@@ -18,7 +18,7 @@ var should = require('should')
       }
     , singleJobData = {
         command: 'sleep'
-        , parameters: [ '10' ]
+        , parameters: [ '1' ]
         , scheduleDateTime: new Date(Math.round((Date.now() + 3600) / (1000 * 60)) * 1000 * 60) 
         , runSync: true
       }
@@ -30,7 +30,7 @@ describe('tock', function() {
   var tock
       , worker;
 
-  before(function(done) {
+  beforeEach(function(done) {
 
     var ctr = 2;
 
@@ -48,10 +48,19 @@ describe('tock', function() {
 
   });
 
-  after(function(done) {
-    mongoose.connection.db.dropDatabase(function(err) {
-      done();
-    });
+  afterEach(function(done) {
+    var destroy = (function() {
+      var ctr = 2;
+      return function() {
+        if (!--ctr) {
+          mongoose.connection.db.dropDatabase(function(err) {
+            done();
+          });
+        }
+      };
+    })();
+    worker.destroy(destroy);
+    tock.destroy(destroy);
   });
 
   it('should parse stuff correctly', function(done) {
@@ -68,20 +77,10 @@ describe('tock', function() {
       should.exist(job.host);
       tock.killJob(job._id);
     };
-    var destroy = (function() {
-      var ctr = 2;
-      return function() {
-        if (!--ctr) {
-          done();
-        }
-      }
-    })();
     var kill = (function() {
       var ctr = 2;
       return function(data) {
         if (!--ctr) {
-          tock.destroy(destroy);
-          worker.destroy(destroy);
           done();
         }
       };
@@ -109,6 +108,22 @@ describe('tock', function() {
       tock.dispatch();
     });
     worker.start();
+  });
+
+  it('should run a synchronous job', function(done) {
+    var singleJob = new SingleJob({
+      command: 'echo'
+      , parameters: [ 'merf' ]
+    });
+    tock.on('job:complete', function(job) {
+      done();
+    });
+    worker.on('connect', function() {
+      tock.spawnJob(singleJob);
+    });
+    singleJob.save(function(err) {
+      worker.start();
+    });
   });
 
 });

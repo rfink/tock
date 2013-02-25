@@ -23,6 +23,7 @@ input { border: 1px solid #999; border-radius: 3px; -moz-border-radius: 3px; -we
 .form { margin: 8px 20px; border: 1px solid #ccc; border-bottom: none; background-color: #fff; }
 div.input-row { overflow: auto; padding: 12px 0; border-bottom: 1px solid #ccc; }
 div.input-row label { display: block; float: left; width: 255px; text-align: right; }
+div.input-row input { width: 325px; }
 div.input-row input, div.input-row select { margin-left: 35px; display: block; float: left; }
 div.button-row { text-align: center; padding: 15px; }
 
